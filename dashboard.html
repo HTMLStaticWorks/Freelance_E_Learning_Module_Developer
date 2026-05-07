@@ -11,322 +11,736 @@
     <link rel="stylesheet" href="assets/css/dark-mode.css">
     <style>
         :root {
-            --sidebar-width: 260px;
-        }
-        
-        .dashboard-wrapper {
-            display: flex;
-            min-height: 100vh;
-            background-color: #f8fafc;
+            --sidebar-width: 290px;
+            --panel-bg: #ffffff;
+            --page-bg: #f1f5f9;
+            --line: #dbe2ea;
         }
 
-        /* Sidebar Styles */
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--page-bg);
+        }
+
+        .dashboard-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: stretch;
+            background: var(--page-bg);
+        }
+
         .sidebar {
             width: var(--sidebar-width);
-            background-color: #1e293b;
-            color: white;
-            transition: all 0.3s;
-            z-index: 1000;
+            flex-shrink: 0;
+            background: #0f172a;
+            color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 1040;
+            border-right: 1px solid rgba(148, 163, 184, 0.2);
         }
 
         .sidebar-header {
-            padding: 2rem 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 1.25rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .sidebar-header .navbar-brand {
+            color: #ffffff !important;
         }
 
         .sidebar-nav {
-            padding: 1.5rem 0;
+            padding: 1rem 0.75rem 1.25rem;
+            display: grid;
+            gap: 0.35rem;
         }
 
         .nav-item-db {
-            padding: 0.75rem 1.5rem;
             display: flex;
             align-items: center;
-            color: rgba(255,255,255,0.7);
+            gap: 0.7rem;
+            padding: 0.8rem 0.85rem;
+            border-radius: 0.8rem;
+            color: #cbd5e1;
             text-decoration: none;
-            transition: all 0.2s;
-            border-left: 4px solid transparent;
-        }
-
-        .nav-item-db:hover, .nav-item-db.active {
-            color: white;
-            background-color: rgba(255,255,255,0.05);
-            border-left-color: var(--primary-color);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
 
         .nav-item-db i {
-            margin-right: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.05rem;
         }
 
-        /* Content Styles */
+        .nav-item-db:hover,
+        .nav-item-db.active {
+            color: #ffffff;
+            background: rgba(37, 99, 235, 0.14);
+            border-color: rgba(37, 99, 235, 0.35);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 0.85rem 0.75rem 1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .logout-item {
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        .logout-item:hover {
+            color: #ffffff;
+            background: rgba(239, 68, 68, 0.28);
+            border-color: rgba(239, 68, 68, 0.45);
+        }
+
         .main-content-db {
-            flex-grow: 1;
-            padding: 2rem;
-            overflow-y: auto;
+            flex: 1;
+            min-width: 0;
+            padding: 1.5rem 1.25rem 2rem;
         }
 
         .top-bar {
             display: flex;
+            flex-wrap: nowrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            gap: 0.85rem;
+            margin-bottom: 0.75rem;
         }
 
-        .search-box-db {
-            background: white;
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
+        .top-left,
+        .top-right {
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            width: 300px;
+            gap: 0.75rem;
+            min-width: 0;
         }
 
-        .search-box-db input {
-            border: none;
-            outline: none;
-            background: transparent;
-            margin-left: 0.75rem;
-            width: 100%;
+        .top-left {
+            flex: 1;
         }
 
-        /* Cards */
+        .mobile-menu-btn {
+            display: none !important;
+        }
+
+        .header-title {
+            margin: 0;
+            font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+            font-weight: 800;
+        }
+
+        .welcome-note {
+            margin: 0 0 1rem;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .btn-icon-round {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            background: var(--panel-bg);
+            color: #1f2937;
+        }
+
+        .btn-icon-round:hover {
+            border-color: #93c5fd;
+            color: #2563eb;
+        }
+
         .card-db {
-            background: white;
+            background: var(--panel-bg);
+            border: 1px solid var(--line);
             border-radius: 1rem;
-            border: none;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            padding: 1.5rem;
+            padding: 1rem;
             height: 100%;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
         }
 
-        .course-card {
-            transition: transform 0.3s;
+        .hero-db {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 58%, #0f172a 100%);
+            color: #ffffff;
+            border: 0;
         }
 
-        .course-card:hover {
-            transform: translateY(-5px);
+        .kpi-card h3 {
+            margin: 0;
+            font-size: 1.7rem;
         }
 
-        .progress-sm {
-            height: 6px;
+        .kpi-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Dark Mode Overrides for Dashboard */
+        .section-db {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .section-db.active {
+            display: block;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.9rem;
+        }
+
+        .upload-zone {
+            border: 2px dashed #93c5fd;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            background: #eff6ff;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0.9rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .timeline-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .table-sm > :not(caption) > * > * {
+            padding-top: 0.55rem;
+            padding-bottom: 0.55rem;
+        }
+
+        .sidebar-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 1030;
+        }
+
+        .badge-soft {
+            background: #e2e8f0;
+            color: #334155;
+            border-radius: 999px;
+            padding: 0.25rem 0.55rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] {
+            --panel-bg: #1e293b;
+            --page-bg: #0f172a;
+            --line: #334155;
+        }
+
+        [data-theme="dark"] body,
         [data-theme="dark"] .dashboard-wrapper {
-            background-color: var(--bg-color);
-        }
-        [data-theme="dark"] .card-db {
-            background-color: var(--card-bg);
-            color: white;
-        }
-        [data-theme="dark"] .sidebar {
-            background-color: #0f172a;
-        }
-        [data-theme="dark"] .search-box-db {
-            background-color: var(--card-bg);
-            color: white;
-        }
-        [data-theme="dark"] .search-box-db input {
-            color: white;
+            background: var(--page-bg);
         }
 
-        @media (max-width: 991px) {
+        [data-theme="dark"] .btn-icon-round,
+        [data-theme="dark"] .card-db {
+            color: #f1f5f9;
+            background: var(--panel-bg);
+            border-color: var(--line);
+        }
+
+        [data-theme="dark"] .welcome-note {
+            color: #94a3b8;
+        }
+
+        [data-theme="dark"] .text-muted {
+            color: #94a3b8 !important;
+        }
+
+        [data-theme="dark"] .upload-zone {
+            background: rgba(37, 99, 235, 0.12);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        [data-theme="dark"] .table {
+            color: #e2e8f0;
+            --bs-table-bg: transparent;
+        }
+
+        [data-theme="dark"] .badge-soft {
+            background: rgba(148, 163, 184, 0.2);
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 991.98px) {
             .sidebar {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 0;
+                bottom: 0;
+                transition: left 0.25s ease;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .sidebar.open + .sidebar-backdrop {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .main-content-db {
+                width: 100%;
+                padding: 1rem 0.85rem 1.4rem;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .timeline-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="dashboard-wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebarPanel">
             <div class="sidebar-header">
-                <a href="index.html" class="navbar-brand fw-bold fs-3 text-white d-flex align-items-center">
+                <a href="index.html" class="navbar-brand fw-bold fs-3 d-flex align-items-center">
                     <i class="bi bi-mortarboard-fill me-2 text-primary"></i>EduPro
                 </a>
             </div>
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item-db active">
-                    <i class="bi bi-speedometer2"></i> Dashboard
+                <a href="#" class="nav-item-db active" data-section="sec-dashboard">
+                    <i class="bi bi-grid-1x2-fill"></i> Overview
                 </a>
-                <a href="#" class="nav-item-db">
-                    <i class="bi bi-book"></i> My Courses
+                <a href="#" class="nav-item-db" data-section="sec-storyboards">
+                    <i class="bi bi-cloud-arrow-up"></i> Storyboards
                 </a>
-                <a href="#" class="nav-item-db">
-                    <i class="bi bi-award"></i> Achievements
+                <a href="#" class="nav-item-db" data-section="sec-review">
+                    <i class="bi bi-display"></i> Module Review
                 </a>
-                <a href="#" class="nav-item-db">
-                    <i class="bi bi-chat-dots"></i> Messages
+                <a href="#" class="nav-item-db" data-section="sec-progress">
+                    <i class="bi bi-bar-chart-steps"></i> Progress Tracking
                 </a>
-                <a href="#" class="nav-item-db">
-                    <i class="bi bi-gear"></i> Settings
+                <a href="#" class="nav-item-db" data-section="sec-scorm">
+                    <i class="bi bi-shield-check"></i> SCORM Testing
+                </a>
+                <a href="#" class="nav-item-db" data-section="sec-downloads">
+                    <i class="bi bi-download"></i> Download Packages
                 </a>
             </nav>
-            <div class="mt-auto p-4">
-                <div class="card-db bg-primary text-white p-3 rounded-4">
-                    <small>Pro Account</small>
-                    <p class="mb-0 fw-bold">Unlimited Access</p>
-                </div>
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item-db logout-item">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
             </div>
         </aside>
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-        <!-- Main Content -->
         <main class="main-content-db">
-            <!-- Top Bar -->
             <div class="top-bar">
-                <div class="search-box-db d-none d-md-flex">
-                    <i class="bi bi-search text-muted"></i>
-                    <input type="text" placeholder="Search courses...">
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <button class="btn btn-link text-dark p-0" id="theme-toggle">
-                        <i class="bi bi-moon fs-5" id="theme-icon"></i>
+                <div class="top-left">
+                    <button class="btn-icon-round mobile-menu-btn" id="menuToggle" type="button" aria-label="Open menu">
+                        <i class="bi bi-list fs-5"></i>
                     </button>
-                    <div class="position-relative">
-                        <i class="bi bi-bell fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5rem;">3</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <img src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff" class="rounded-circle" width="35" alt="Profile">
-                        <span class="fw-bold d-none d-sm-inline">Alex Johnson</span>
+                    <h1 class="header-title">Dashboard</h1>
+                </div>
+                <div class="top-right">
+                    <button class="btn-icon-round" id="rtl-toggle" type="button" aria-label="Toggle RTL" title="Toggle RTL">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </button>
+                    <button class="btn-icon-round" id="theme-toggle" type="button" aria-label="Toggle Dark Mode" title="Toggle Theme">
+                        <i class="bi bi-moon-fill fs-5" id="theme-icon"></i>
+                    </button>
+                    <div class="d-flex align-items-center">
+                        <img src="https://ui-avatars.com/api/?name=Alex+Johnson&background=2563eb&color=fff" class="rounded-circle" width="36" height="36" alt="Profile icon">
                     </div>
                 </div>
             </div>
+            <p class="welcome-note">Welcome back, Alex. Here is your project delivery dashboard for today.</p>
 
-            <!-- Dashboard Content -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="card-db bg-primary text-white p-4 overflow-hidden position-relative">
-                        <div class="position-relative z-1">
-                            <h2 class="fw-bold">Welcome back, Alex!</h2>
-                            <p class="mb-4">You've completed 85% of your weekly learning goal. Keep it up!</p>
-                            <button class="btn btn-light rounded-pill px-4">Continue Learning</button>
-                        </div>
-                        <i class="bi bi-mortarboard position-absolute bottom-0 end-0 opacity-25" style="font-size: 150px; transform: translate(20%, 20%);"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-4">
-                    <div class="card-db d-flex align-items-center gap-3">
-                        <div class="bg-primary-subtle p-3 rounded-4 text-primary">
-                            <i class="bi bi-journal-check fs-3"></i>
-                        </div>
-                        <div>
-                            <h4 class="fw-bold mb-0">12</h4>
-                            <small class="text-muted">Courses in Progress</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-db d-flex align-items-center gap-3">
-                        <div class="bg-success-subtle p-3 rounded-4 text-success">
-                            <i class="bi bi-clock-history fs-3"></i>
-                        </div>
-                        <div>
-                            <h4 class="fw-bold mb-0">48h</h4>
-                            <small class="text-muted">Learning Time</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-db d-flex align-items-center gap-3">
-                        <div class="bg-info-subtle p-3 rounded-4 text-info">
-                            <i class="bi bi-trophy fs-3"></i>
-                        </div>
-                        <div>
-                            <h4 class="fw-bold mb-0">6</h4>
-                            <small class="text-muted">Certificates Earned</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Course Progress -->
-            <div class="row g-4">
-                <div class="col-lg-8">
-                    <h5 class="fw-bold mb-3">Recent Courses</h5>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="card-db course-card border-start border-4 border-primary">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="bg-light p-2 rounded-3">
-                                            <i class="bi bi-layout-text-window-reverse fs-4"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="fw-bold mb-0">Advanced Articulate Storyline 360</h6>
-                                            <small class="text-muted">Module 4: Variables & Logic</small>
-                                        </div>
-                                    </div>
-                                    <div class="text-end">
-                                        <span class="badge bg-primary-subtle text-primary mb-2">75%</span>
-                                        <div class="progress progress-sm" style="width: 100px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 75%;"></div>
-                                        </div>
-                                    </div>
+            <section class="section-db active" id="sec-dashboard">
+                <div class="row g-3 mb-3">
+                    <div class="col-12">
+                        <div class="card-db hero-db">
+                            <div class="row align-items-center g-3">
+                                <div class="col-lg-8">
+                                    <h2 class="fw-bold mb-2">Training Company Delivery Dashboard</h2>
+                                    <p class="mb-3">Manage storyboard uploads, interactive review cycles, SCORM quality checks, and final package handoff in one place.</p>
+                                    <button class="btn btn-light rounded-pill px-4 fw-semibold">Open Current Sprint</button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-db course-card border-start border-4 border-success">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="bg-light p-2 rounded-3">
-                                            <i class="bi bi-palette fs-4"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="fw-bold mb-0">UI/UX Design for E-Learning</h6>
-                                            <small class="text-muted">Module 2: Visual Hierarchy</small>
-                                        </div>
-                                    </div>
-                                    <div class="text-end">
-                                        <span class="badge bg-success-subtle text-success mb-2">40%</span>
-                                        <div class="progress progress-sm" style="width: 100px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%;"></div>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-4 text-lg-end">
+                                    <span class="badge rounded-pill text-bg-light">Week 4 Delivery Window</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <h5 class="fw-bold mb-3">Upcoming Tasks</h5>
-                    <div class="card-db">
-                        <div class="d-flex gap-3 mb-4">
-                            <div class="text-center bg-light rounded-3 p-2" style="min-width: 50px;">
-                                <h5 class="fw-bold mb-0">12</h5>
-                                <small class="text-uppercase" style="font-size: 0.6rem;">May</small>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">Ethics Quiz</h6>
-                                <small class="text-muted">Submit before 5:00 PM</small>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-3 mb-4">
-                            <div class="text-center bg-light rounded-3 p-2" style="min-width: 50px;">
-                                <h5 class="fw-bold mb-0">15</h5>
-                                <small class="text-uppercase" style="font-size: 0.6rem;">May</small>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">LMS Integration Lab</h6>
-                                <small class="text-muted">Final Review Session</small>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card-db kpi-card">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <small class="text-muted d-block">Active Modules</small>
+                                    <h3 class="fw-bold">18</h3>
+                                </div>
+                                <span class="kpi-icon bg-primary-subtle text-primary"><i class="bi bi-folder2-open"></i></span>
                             </div>
                         </div>
-                        <button class="btn btn-outline-primary w-100 rounded-pill">View Calendar</button>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card-db kpi-card">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <small class="text-muted d-block">Pending Reviews</small>
+                                    <h3 class="fw-bold">7</h3>
+                                </div>
+                                <span class="kpi-icon bg-warning-subtle text-warning"><i class="bi bi-chat-square-text"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card-db kpi-card">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <small class="text-muted d-block">SCORM Tests Passed</small>
+                                    <h3 class="fw-bold">26</h3>
+                                </div>
+                                <span class="kpi-icon bg-success-subtle text-success"><i class="bi bi-patch-check"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card-db kpi-card">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <small class="text-muted d-block">Final Packages</small>
+                                    <h3 class="fw-bold">9</h3>
+                                </div>
+                                <span class="kpi-icon bg-info-subtle text-info"><i class="bi bi-box-seam"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="row g-3">
+                    <div class="col-lg-8">
+                        <div class="card-db">
+                            <div class="section-title">
+                                <h5 class="fw-bold mb-0">Recent Team Activity</h5>
+                                <span class="badge-soft">Live Feed</span>
+                            </div>
+                            <div class="timeline-row">
+                                <small class="text-muted">10:12 AM</small>
+                                <div><strong>Module 05 storyboard uploaded</strong> by Priya (v3), awaiting instructional review.</div>
+                            </div>
+                            <div class="timeline-row">
+                                <small class="text-muted">09:40 AM</small>
+                                <div><strong>Sales Enablement SCORM</strong> passed completion + bookmark testing in SCORM Cloud.</div>
+                            </div>
+                            <div class="timeline-row">
+                                <small class="text-muted">Yesterday</small>
+                                <div><strong>Compliance 2026 package</strong> delivered to client with source files and QA report.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-db">
+                            <div class="section-title">
+                                <h5 class="fw-bold mb-0">Next Milestones</h5>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted d-block">May 10</small>
+                                <strong>Client Sign-off (Module 03)</strong>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted d-block">May 12</small>
+                                <strong>Batch SCORM Regression Test</strong>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">May 14</small>
+                                <strong>Final Zip Delivery Window</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-db" id="sec-storyboards">
+                <div class="section-title">
+                    <h4 class="fw-bold mb-0">Storyboard Upload Center</h4>
+                    <button class="btn btn-primary rounded-pill px-3">Upload New Version</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-lg-7">
+                        <div class="card-db">
+                            <div class="upload-zone text-center">
+                                <i class="bi bi-file-earmark-arrow-up fs-1 text-primary"></i>
+                                <h6 class="fw-bold mt-2">Drop storyboard files here</h6>
+                                <p class="text-muted mb-2">Supports PPTX, DOCX, XLSX, PDF up to 250MB per file.</p>
+                                <button class="btn btn-outline-primary rounded-pill px-3">Browse Files</button>
+                            </div>
+                            <div class="mt-3">
+                                <h6 class="fw-bold">Upload Checklist</h6>
+                                <ul class="mb-0 text-muted">
+                                    <li>Include module name and version in file title.</li>
+                                    <li>Attach interaction notes for branching screens.</li>
+                                    <li>Add target review date before submission.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="card-db">
+                            <h6 class="fw-bold mb-3">Pending Storyboard Reviews</h6>
+                            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                <span>Onboarding Module v2</span>
+                                <span class="badge bg-warning-subtle text-warning">Needs Review</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                <span>Cyber Security v5</span>
+                                <span class="badge bg-info-subtle text-info">In QA</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <span>Leadership Basics v1</span>
+                                <span class="badge bg-success-subtle text-success">Approved</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-db" id="sec-review">
+                <div class="section-title">
+                    <h4 class="fw-bold mb-0">Interactive Module Review</h4>
+                    <span class="badge-soft">Reviewer Mode</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card-db">
+                            <h6 class="fw-bold">Compliance Essentials</h6>
+                            <p class="text-muted mb-2">Round 2 interactive review with 14 comments.</p>
+                            <div class="progress mb-2" style="height: 7px;">
+                                <div class="progress-bar" style="width: 62%;"></div>
+                            </div>
+                            <small class="text-muted">62% review completion</small>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card-db">
+                            <h6 class="fw-bold">Sales Enablement Track</h6>
+                            <p class="text-muted mb-2">Media sync updated, client sign-off pending.</p>
+                            <div class="progress mb-2" style="height: 7px;">
+                                <div class="progress-bar bg-success" style="width: 88%;"></div>
+                            </div>
+                            <small class="text-muted">88% review completion</small>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card-db">
+                            <h6 class="fw-bold">Product Simulation</h6>
+                            <p class="text-muted mb-2">Interaction QA queued for mobile layout pass.</p>
+                            <div class="progress mb-2" style="height: 7px;">
+                                <div class="progress-bar bg-warning" style="width: 46%;"></div>
+                            </div>
+                            <small class="text-muted">46% review completion</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-db" id="sec-progress">
+                <div class="section-title">
+                    <h4 class="fw-bold mb-0">Development Progress Tracking</h4>
+                </div>
+                <div class="row g-3">
+                    <div class="col-lg-7">
+                        <div class="card-db">
+                            <h6 class="fw-bold mb-3">Sprint Pipeline</h6>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between"><span>Storyboard Approved</span><strong>14 / 18</strong></div>
+                                <div class="progress mt-1" style="height: 8px;"><div class="progress-bar" style="width: 78%;"></div></div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between"><span>Build in Storyline/Captivate</span><strong>11 / 18</strong></div>
+                                <div class="progress mt-1" style="height: 8px;"><div class="progress-bar bg-info" style="width: 61%;"></div></div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between"><span>Client Final Approval</span><strong>6 / 18</strong></div>
+                                <div class="progress mt-1" style="height: 8px;"><div class="progress-bar bg-success" style="width: 34%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="card-db">
+                            <h6 class="fw-bold mb-3">Team Workload</h6>
+                            <div class="d-flex justify-content-between border-bottom py-2"><span>Instructional Design</span><strong>82%</strong></div>
+                            <div class="d-flex justify-content-between border-bottom py-2"><span>Development</span><strong>74%</strong></div>
+                            <div class="d-flex justify-content-between border-bottom py-2"><span>QA Testing</span><strong>63%</strong></div>
+                            <div class="d-flex justify-content-between py-2"><span>Client Review</span><strong>41%</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-db" id="sec-scorm">
+                <div class="section-title">
+                    <h4 class="fw-bold mb-0">SCORM Testing Lab</h4>
+                    <button class="btn btn-outline-primary rounded-pill px-3">Run New Test</button>
+                </div>
+                <div class="card-db mb-3">
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Version</th>
+                                    <th>Standard</th>
+                                    <th>Status</th>
+                                    <th>Last Run</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Compliance 2026</td>
+                                    <td>v3.4</td>
+                                    <td>SCORM 2004</td>
+                                    <td><span class="badge bg-success-subtle text-success">Passed</span></td>
+                                    <td>Today 9:40 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Sales Enablement</td>
+                                    <td>v2.1</td>
+                                    <td>SCORM 1.2</td>
+                                    <td><span class="badge bg-warning-subtle text-warning">Warnings</span></td>
+                                    <td>Today 8:15 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Product Simulation</td>
+                                    <td>v1.8</td>
+                                    <td>SCORM 2004</td>
+                                    <td><span class="badge bg-danger-subtle text-danger">Failed</span></td>
+                                    <td>Yesterday 6:30 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-db">
+                    <h6 class="fw-bold">Latest QA Notes</h6>
+                    <p class="text-muted mb-0">Product Simulation failed in resume data test. Re-export with suspend data optimization and rerun SCORM Cloud validation.</p>
+                </div>
+            </section>
+
+            <section class="section-db" id="sec-downloads">
+                <div class="section-title">
+                    <h4 class="fw-bold mb-0">Final Package Downloads</h4>
+                    <span class="badge-soft">Ready for Handoff</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-lg-6">
+                        <div class="card-db">
+                            <div class="d-flex justify-content-between flex-wrap gap-2 align-items-start mb-2">
+                                <div>
+                                    <h6 class="fw-bold mb-1">Compliance Training 2026</h6>
+                                    <small class="text-muted">Final ZIP + Source + QA Sheet</small>
+                                </div>
+                                <span class="badge bg-success-subtle text-success">Delivered</span>
+                            </div>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary btn-sm rounded-pill px-3">Download SCORM ZIP</button>
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Download Source</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card-db">
+                            <div class="d-flex justify-content-between flex-wrap gap-2 align-items-start mb-2">
+                                <div>
+                                    <h6 class="fw-bold mb-1">Sales Enablement Masterclass</h6>
+                                    <small class="text-muted">Client Review Package v2.1</small>
+                                </div>
+                                <span class="badge bg-info-subtle text-info">Review Build</span>
+                            </div>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary btn-sm rounded-pill px-3">Download Review ZIP</button>
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Download Release Notes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
-    <!-- Scripts -->
+    <script>
+        (function () {
+            const sidebar = document.getElementById('sidebarPanel');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            const menuToggle = document.getElementById('menuToggle');
+            const navItems = Array.from(document.querySelectorAll('.nav-item-db[data-section]'));
+            const sections = Array.from(document.querySelectorAll('.section-db'));
+
+            function showSection(id) {
+                navItems.forEach((item) => {
+                    item.classList.toggle('active', item.dataset.section === id);
+                });
+                sections.forEach((section) => {
+                    section.classList.toggle('active', section.id === id);
+                });
+            }
+
+            navItems.forEach((item) => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showSection(item.dataset.section);
+                    if (window.innerWidth < 992) {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('open');
+                });
+            }
+
+            backdrop.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+            });
+        })();
+    </script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
