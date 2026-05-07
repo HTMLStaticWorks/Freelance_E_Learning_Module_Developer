@@ -1,0 +1,228 @@
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --secondary-color: #f8fafc;
+    --border-color: #334155;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .navbar {
+    background-color: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .navbar-brand {
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .nav-link {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .nav-link:hover, [data-theme="dark"] .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+[data-theme="dark"] .hero-content h1, 
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--secondary-color);
+}
+
+[data-theme="dark"] .hero-content p {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .custom-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .custom-card p {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .form-control {
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Fix for Bootstrap Background Classes */
+[data-theme="dark"] .bg-white {
+    background-color: var(--bg-color) !important;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: #1a2333 !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .card-body {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .footer {
+    background-color: #020617 !important;
+}
+
+[data-theme="dark"] .border-bottom, 
+[data-theme="dark"] .border-top,
+[data-theme="dark"] .border {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+[data-theme="dark"] p, 
+[data-theme="dark"] li,
+[data-theme="dark"] span:not(.badge) {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .text-muted span {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] label {
+    color: var(--secondary-color) !important;
+}
+
+[data-theme="dark"] .form-label {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: #475569 !important;
+}
+
+/* Contact form: keep select text/options readable in dark mode */
+[data-theme="dark"] select.form-control,
+[data-theme="dark"] select.form-select {
+    color: var(--text-color) !important;
+    background-color: var(--bg-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] select.form-control option,
+[data-theme="dark"] select.form-select option {
+    color: var(--text-color);
+    background-color: #0f172a;
+}
+
+[data-theme="dark"] .badge.bg-primary-subtle {
+    background-color: rgba(37, 99, 235, 0.2) !important;
+    color: #60a5fa !important;
+}
+
+/* Portfolio: keep region badges readable in dark theme */
+[data-theme="dark"] .global-deployment-badges .badge {
+    background-color: rgba(248, 250, 252, 0.92) !important;
+    color: #0f172a !important;
+}
+
+/* Specific Pricing & FAQ Overrides */
+[data-theme="dark"] .accordion-item {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .accordion-button {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    background-color: rgba(37, 99, 235, 0.1) !important;
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .accordion-body {
+    background-color: var(--card-bg) !important;
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] #pricingFaq .accordion-button::after {
+    filter: invert(1) brightness(1.6);
+}
+
+[data-theme="dark"] .table-responsive.bg-white,
+[data-theme="dark"] div.table-responsive.rounded-4 {
+    background-color: var(--card-bg) !important;
+    box-shadow: none !important;
+}
+
+[data-theme="dark"] .table {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .table thead,
+[data-theme="dark"] .table tr {
+    border-color: var(--border-color) !important;
+}
+
+/* Pricing: Feature Comparison table should stay dark in dark theme */
+[data-theme="dark"] .feature-comparison-table {
+    background-color: #16233a !important;
+}
+
+[data-theme="dark"] .feature-comparison-table .table {
+    --bs-table-bg: #16233a;
+    --bs-table-striped-bg: #16233a;
+    --bs-table-hover-bg: #1c2b45;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .feature-comparison-table .table > :not(caption) > * > * {
+    background-color: var(--bs-table-bg) !important;
+}
+
+/* Mobile Navbar Toggler */
+[data-theme="dark"] .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1) brightness(100%) !important;
+}

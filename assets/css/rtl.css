@@ -1,0 +1,53 @@
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .navbar-nav {
+    margin-right: auto;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .me-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+[dir="rtl"] .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .pe-3 {
+    padding-left: 1rem !important;
+    padding-right: 0 !important;
+}
+
+[dir="rtl"] .ps-3 {
+    padding-right: 1rem !important;
+    padding-left: 0 !important;
+}
+
+[dir="rtl"] .me-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+}
+
+[dir="rtl"] .ms-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .footer-links a:hover {
+    padding-right: 5px;
+    padding-left: 0;
+}
+
+[dir="rtl"] .social-icons a {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .accordion-button::after {
+    margin-right: auto;
+    margin-left: 0;
+}
