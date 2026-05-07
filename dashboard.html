@@ -52,7 +52,8 @@
         }
 
         .sidebar-header .navbar-brand {
-            color: #ffffff !important;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
         }
 
         .sidebar-nav {
@@ -327,6 +328,15 @@
                 grid-template-columns: 1fr;
                 gap: 0.25rem;
             }
+
+            .download-actions {
+                justify-content: center;
+            }
+
+            .download-actions .btn {
+                width: 220px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -334,7 +344,7 @@
     <div class="dashboard-wrapper">
         <aside class="sidebar" id="sidebarPanel">
             <div class="sidebar-header">
-                <a href="index.html" class="navbar-brand fw-bold fs-3 d-flex align-items-center">
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
                     <i class="bi bi-mortarboard-fill me-2 text-primary"></i>EduPro
                 </a>
             </div>
@@ -677,7 +687,7 @@
                                 </div>
                                 <span class="badge bg-success-subtle text-success">Delivered</span>
                             </div>
-                            <div class="d-flex gap-2 flex-wrap">
+                            <div class="d-flex gap-2 flex-wrap download-actions">
                                 <button class="btn btn-primary btn-sm rounded-pill px-3">Download SCORM ZIP</button>
                                 <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Download Source</button>
                             </div>
@@ -692,7 +702,7 @@
                                 </div>
                                 <span class="badge bg-info-subtle text-info">Review Build</span>
                             </div>
-                            <div class="d-flex gap-2 flex-wrap">
+                            <div class="d-flex gap-2 flex-wrap download-actions">
                                 <button class="btn btn-primary btn-sm rounded-pill px-3">Download Review ZIP</button>
                                 <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Download Release Notes</button>
                             </div>
