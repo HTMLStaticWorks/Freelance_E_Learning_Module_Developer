@@ -328,14 +328,26 @@
                 grid-template-columns: 1fr;
                 gap: 0.25rem;
             }
+        }
 
+        @media (max-width: 1199.98px) {
             .download-actions {
-                justify-content: center;
+                flex-direction: column;
             }
-
             .download-actions .btn {
-                width: 220px;
-                text-align: center;
+                width: 100%;
+                margin-bottom: 0.25rem;
+            }
+            .download-actions .btn:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .download-actions .btn {
+                flex: 1;
+                min-width: 140px;
+                white-space: nowrap;
             }
         }
     </style>
@@ -679,30 +691,30 @@
                 </div>
                 <div class="row g-3">
                     <div class="col-lg-6">
-                        <div class="card-db">
-                            <div class="d-flex justify-content-between flex-wrap gap-2 align-items-start mb-2">
+                        <div class="card-db d-flex flex-column">
+                            <div class="d-flex justify-content-between flex-wrap gap-2 align-items-start mb-3">
                                 <div>
                                     <h6 class="fw-bold mb-1">Compliance Training 2026</h6>
                                     <small class="text-muted">Final ZIP + Source + QA Sheet</small>
                                 </div>
                                 <span class="badge bg-success-subtle text-success">Delivered</span>
                             </div>
-                            <div class="d-flex gap-2 flex-wrap download-actions">
+                            <div class="d-flex gap-2 flex-wrap download-actions mt-auto">
                                 <button class="btn btn-primary btn-sm rounded-pill px-3">Download SCORM ZIP</button>
                                 <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Download Source</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="card-db">
-                            <div class="d-flex justify-content-between flex-wrap gap-2 align-items-start mb-2">
+                        <div class="card-db d-flex flex-column">
+                            <div class="d-flex justify-content-between flex-wrap gap-2 align-items-start mb-3">
                                 <div>
-                                    <h6 class="fw-bold mb-1">Sales Enablement Masterclass</h6>
+                                    <h6 class="fw-bold mb-1">Sales Masterclass</h6>
                                     <small class="text-muted">Client Review Package v2.1</small>
                                 </div>
                                 <span class="badge bg-info-subtle text-info">Review Build</span>
                             </div>
-                            <div class="d-flex gap-2 flex-wrap download-actions">
+                            <div class="d-flex gap-2 flex-wrap download-actions mt-auto">
                                 <button class="btn btn-primary btn-sm rounded-pill px-3">Download Review ZIP</button>
                                 <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Download Release Notes</button>
                             </div>

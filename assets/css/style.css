@@ -647,3 +647,31 @@ img {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
 }
+/* Portfolio */
+.portfolio-grid {
+    transition: all 0.5s ease;
+}
+
+.portfolio-item {
+    transition: all 0.4s ease;
+}
+
+.portfolio-filter-group .btn {
+    border-radius: 0.5rem;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+}
+
+.portfolio-filter-group .btn.active {
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.custom-card .badge {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.custom-card .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}

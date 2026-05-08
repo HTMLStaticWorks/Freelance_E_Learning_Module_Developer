@@ -124,4 +124,43 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // 8. Portfolio Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    if (filterButtons.length > 0 && portfolioItems.length > 0) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active button
+                filterButtons.forEach(b => {
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-outline-primary');
+                });
+                btn.classList.remove('btn-outline-primary');
+                btn.classList.add('btn-primary', 'active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    // Hide all items first with a smooth fade
+                    item.classList.remove('visible');
+                    
+                    setTimeout(() => {
+                        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                            item.style.display = 'block';
+                            // Re-trigger animation
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, 50);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }, 300); // Wait for fade out
+                });
+            });
+        });
+    }
 });
