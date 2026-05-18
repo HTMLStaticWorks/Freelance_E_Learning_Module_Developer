@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dark-mode.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <style>
+        /* Responsive Alignments for Lists in Process Phases */
+        @media (max-width: 991.98px) {
+            .section-padding ul.list-unstyled {
+                display: table !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                text-align: left !important;
+            }
+            .section-padding ul.list-unstyled li.d-flex {
+                justify-content: flex-start !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Exact navbar from index.html with links swapped -->
@@ -29,6 +43,7 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link " href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link " href="home-2.html">Home 2</a></li>
+                    <li class="nav-item"><a class="nav-link " href="about.html">About</a></li>
                     
                     <li class="nav-item"><a class="nav-link " href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link active" href="process.html">Process</a></li>
@@ -78,9 +93,9 @@
                     </ul>
                 </div>
                 <div class="col-lg-6 slide-in-right text-end">
-                    <div class="position-relative d-inline-block text-start">
-                        <img src="assets/images/about_designer_1778067569085.png" class="img-fluid rounded-circle shadow-lg" style="width: 100%; max-width: 550px; aspect-ratio: 1/1; object-fit: cover;" alt="Analysis">
-                        <div class="position-absolute bottom-0 start-0 bg-white p-4 rounded-4 shadow-lg text-center" style="transform: translate(5%, -15%); width: 140px;">
+                    <div class="position-relative d-inline-block text-start w-100">
+                        <img src="assets/images/about_designer_1778067569085.png" class="img-fluid rounded-4 shadow-lg w-100" style="height: 380px; object-fit: cover;" alt="Analysis">
+                        <div class="position-absolute bottom-0 start-0 bg-white p-4 rounded-4 shadow-lg text-center" style="transform: translate(5%, -15%); width: 140px; z-index: 2;">
                             <i class="bi bi-search fs-1 text-primary"></i>
                             <h5 class="fw-bold mt-2 mb-0">Deep Dive</h5>
                         </div>
@@ -98,41 +113,36 @@
                     <span class="text-primary fw-bold text-uppercase tracking-wide">Phase 2</span>
                     <h2 class="display-5 fw-bold mb-4">Storyboarding & Prototyping</h2>
                     <p class="lead text-muted mb-4">Visualizing the flow of information. We create detailed text storyboards and interactive prototypes to align on content before full-scale development begins.</p>
+                    <p class="text-muted mb-4">By sketching custom interface mockups and logical triggers early on, we map out clear user paths and instructional pathways. This proactive design verification guarantees stakeholder alignment and minimizes structural updates during the build phase.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-3 fs-5"></i> <span>Interactive Wireframing & UX Mockups</span></li>
+                        <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-3 fs-5"></i> <span>Instructional Flow & Narrative Scripting</span></li>
+                    </ul>
                 </div>
                 <div class="col-lg-6 zoom-in-scroll">
-                    <div class="d-flex gap-3">
-                        <div class="d-flex flex-column gap-3 mt-5">
-                            <img src="assets/images/port_1_1778067779549.png" class="img-fluid rounded-4 shadow-sm" alt="Storyboard 1">
-                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGUlMjBsZWFybmluZ3xlbnwwfHwwfHx8MA%3D%3D" class="img-fluid rounded-4 shadow-sm" alt="Storyboard 2">
-                        </div>
-                        <div class="d-flex flex-column gap-3">
-                            <img src="assets/images/port_3_1778067812223.png" class="img-fluid rounded-4 shadow-sm" alt="Storyboard 3">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZSUyMGxlYXJuaW5nfGVufDB8fDB8fHww" class="img-fluid rounded-4 shadow-sm" alt="Rapid Prototyping">
-                        </div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow-lg w-100" style="height: 380px; object-fit: cover;" alt="Storyboarding & Prototyping">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. Development (Flip-up) -->
+    <!-- 3. Development (Slide-in-left) -->
     <section class="section-padding bg-white">
-        <div class="container text-center flip-up">
-            <span class="text-primary fw-bold text-uppercase tracking-wide">Phase 3</span>
-            <h2 class="display-5 fw-bold mb-4 text-secondary">Authoring & Development</h2>
-            <p class="lead text-muted mb-5 mx-auto" style="max-width: 700px;">Bringing the storyboard to life. We integrate multimedia, program complex interactions, and construct the SCORM architecture.</p>
-            
-            <div class="row g-0 rounded-4 overflow-hidden shadow-lg border">
-                <div class="col-md-6">
-                    <img src="assets/images/serv_inter_idx_1778067606242.png" class="img-fluid h-100" style="object-fit: cover;" alt="Development">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 slide-in-left">
+                    <span class="text-primary fw-bold text-uppercase tracking-wide">Phase 3</span>
+                    <h2 class="display-5 fw-bold mb-4">Authoring & Development</h2>
+                    <p class="lead text-muted mb-4">Bringing the storyboard to life. We integrate premium multimedia assets, program complex branching pathways, and construct responsive SCORM/xAPI packages.</p>
+                    <h4 class="fw-bold mb-3 text-secondary">Pixel-Perfect Engineering</h4>
+                    <p class="text-muted mb-4">Every button click, variable change, and branching path is meticulously coded and tested for responsive performance across all devices and LMS platforms.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-3 fs-5"></i> <span>Custom Interaction Programming</span></li>
+                        <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-3 fs-5"></i> <span>LMS SCORM/xAPI Packaging</span></li>
+                    </ul>
                 </div>
-                <div class="col-md-6 bg-dark p-5 d-flex flex-column justify-content-center text-start">
-                    <h3 class="text-white fw-bold mb-3">Pixel-Perfect Engineering</h3>
-                    <p class="text-light opacity-75 mb-4">Every button click, variable change, and branching path is meticulously coded and tested for responsive performance.</p>
-                    <div class="progress mb-3" style="height: 10px;">
-                        <div class="progress-bar bg-primary" style="width: 100%"></div>
-                    </div>
-                    <small class="text-uppercase tracking-wide text-light opacity-50">100% Custom Interaction Design</small>
+                <div class="col-lg-6 slide-in-right">
+                    <img src="assets/images/serv_inter_idx_1778067606242.png" class="img-fluid rounded-4 shadow-lg w-100" style="height: 380px; object-fit: cover;" alt="Development">
                 </div>
             </div>
         </div>
@@ -144,7 +154,7 @@
             <div class="row g-4 align-items-center">
                 <div class="col-lg-5 slide-in-left">
                     <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-                        <img src="assets/images/scorm_test_1778067655614.png" class="card-img-top" alt="Delivery">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top w-100" style="height: 260px; object-fit: cover;" alt="Delivery">
                         <div class="card-body p-4 bg-white">
                             <h4 class="fw-bold">Final Handoff</h4>
                             <p class="text-muted mb-0">Delivery of source files, SCORM packages, and LMS deployment guides.</p>
@@ -154,9 +164,14 @@
                 <div class="col-lg-6 offset-lg-1 slide-in-right">
                     <span class="text-primary fw-bold text-uppercase tracking-wide">Phase 4</span>
                     <h2 class="display-5 fw-bold mb-4">Quality Assurance & Launch</h2>
-                    <p class="lead text-muted mb-4">Rigorous multi-device testing and SCORM Cloud validation ensure zero bugs upon launch.</p>
+                    <p class="lead text-muted mb-4">Rigorous multi-device testing and SCORM Cloud validation ensure zero bugs upon launch. I ensure absolute compatibility across different browsers, mobile devices, and screen resolutions.</p>
+                    <p class="text-muted mb-4">Every module undergoes an extensive diagnostic check prior to launch, verifying grading logic, bookmarking consistency, and navigation constraints so that your training is delivered with perfect operational stability.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-3 fs-5"></i> <span>Cross-Browser & Multi-Device Testing</span></li>
+                        <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-3 fs-5"></i> <span>LMS Integration & Grading Logic Audits</span></li>
+                    </ul>
                     <a href="contact.html" class="btn btn-primary btn-lg rounded-pill px-5">Start This Process</a>
-                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -438,13 +438,14 @@ img {
     .contact-info-item {
         align-items: flex-start !important;
     }
+}
 
-    .contact-info-icon {
-        flex: 0 0 50px;
-        min-width: 50px;
-        width: 50px !important;
-        height: 50px !important;
-    }
+.contact-info-icon {
+    flex: 0 0 50px !important;
+    min-width: 50px !important;
+    width: 50px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
 }
 
 /* Mobile Navbar Offcanvas Fix (Opens from right) */
